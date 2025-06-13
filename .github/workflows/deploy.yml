@@ -14,9 +14,15 @@ jobs:
         uses: actions/setup-node@v4
       - name: Install dependencies
         run: npm install
+      - name: Read fake cname into variable
+        uses: guibranco/github-file-reader-action-v2@latest
+        id: fake_cname
+        with:
+          path: "static/FAKE_CNAME"
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
+          PUBLIC_FAKE_CNAME: '${{ steps.fake_cname.outputs.contents }}'
         run: npm run build
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
