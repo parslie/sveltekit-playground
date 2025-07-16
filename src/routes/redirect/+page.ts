@@ -1,4 +1,4 @@
-import { base } from '$service-worker';
+import { base } from '$app/paths';
 import { redirect } from '@sveltejs/kit';
 
 export function load() {
